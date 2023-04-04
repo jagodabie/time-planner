@@ -1,0 +1,70 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import type { Day, TimeRecord } from '@/types/Task'
+import type { Ref } from 'vue'
+import { prepareISODateString } from '@/helpers/DateHelpers'
+import TaskRecord from '@/components/TaskRecord.vue'
+
+import { getCurrentInstance } from 'vue'
+import { useGetDaysOfWeeksDate } from '@/composables/useGetDaysOfWeeksDate'
+
+const app = getCurrentInstance()
+const axios = app?.appContext.config.globalProperties.$axios
+const timeRecords: Ref<TimeRecord[]> = ref([])
+const getDisplayDate = (day: Day) => `${day.day} ${day.month} ${day.year}`
+const getToday = (day: Day) => day.day === new Date().getDate()
+
+const getTimeRecords = async () => {
+  const result = await axios.get('/tasks-time/')
+  timeRecords.value = result.data
+}
+getTimeRecords()
+const tasksPerDay = (date: string): TimeRecord[] => {
+  return timeRecords.value.filter((task) => task.workDate === date && task.workDescription)
+}
+const { weekdaysDates } = useGetDaysOfWeeksDate()
+</script>
+<template>
+  <div class="days-wrapper">
+    <div class="day" v-for="(day, index) in weekdaysDates" :key="index">
+      <div class="title" :class="{ 'is-today': getToday(day) }">
+        <span>{{ day.weekday }}</span>
+        <span>{{ getDisplayDate(day) }}</span>
+      </div>
+      <TaskRecord :tasks="tasksPerDay(prepareISODateString(day.year, day.monthNumeric, day.day))" />
+    </div>
+  </div>
+</template>
+<style lang="scss" scoped>
+@import '@/assets/scss/variables';
+.days-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.day {
+  width: $width-of-day-row;
+  box-sizing: content-box;
+  margin: 1px;
+  .title {
+    border: $border-gray44;
+    text-align: left;
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    &.is-today {
+      border: rgb(184, 78, 78) solid 2px;
+    }
+
+    :last-child {
+      color: $bg-gray44;
+      font-weight: 100;
+      font-size: 10px;
+    }
+    & > span {
+      display: block;
+    }
+  }
+}
+</style>

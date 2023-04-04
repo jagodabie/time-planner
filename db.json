@@ -1,0 +1,90 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Aktywność Fizyczna",
+      "comment": "",
+      "prior": "high",
+      "category": "zdrowie"
+    },
+    {
+      "id": 2,
+      "title": "Poranna Rutyna",
+      "comment": "Picie kawy , ogarnięcie, afirmacje ect",
+      "prior": "wysoki",
+      "category": "życie"
+    },
+    {
+      "id": 3,
+      "title": "Praca",
+      "comment": "",
+      "prior": "wysoki",
+      "category": "rozwój"
+    },
+    {
+      "id": 4,
+      "title": "Przygotowanie do wyjścia",
+      "comment": "",
+      "prior": "średni",
+      "category": "życie"
+    },
+    {
+      "id": 5,
+      "title": "Spotkania towarzyskie",
+      "comment": "",
+      "prior": "średni",
+      "category": "relacje"
+    },
+    {
+      "id": 6,
+      "title": "Zakupy",
+      "comment": "",
+      "prior": "wysoki",
+      "category": "życie"
+    },
+    {
+      "id": 7,
+      "title": "Dom",
+      "comment": "sprzatanie, gotowanie ect",
+      "prior": "średni",
+      "category": "życie"
+    },
+    {
+      "id": 8,
+      "title": "Wycieczki",
+      "comment": "",
+      "prior": "średni",
+      "category": "hobbi"
+    },
+    {
+      "id": 9,
+      "title": "Czas z rodziną",
+      "comment": "",
+      "prior": "wysoki",
+      "category": "relacje"
+    },
+    {
+      "id": 10,
+      "title": "Kroki",
+      "comment": "",
+      "prior": "wysoki",
+      "category": "zdrowie"
+    }
+  ],
+  "tasks-time": [
+    {
+      "durationInHour": "12",
+      "durationInMinutes": "12",
+      "workDate": "2023-04-03",
+      "workDescription": "develop my own project",
+      "id": 1
+    },
+    {
+      "durationInHour": "12",
+      "durationInMinutes": "12",
+      "workDate": "2023-04-03",
+      "workDescription": "Cooking lunch",
+      "id": 1
+    }
+  ]
+}
