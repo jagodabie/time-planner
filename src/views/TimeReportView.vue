@@ -4,6 +4,7 @@ import type { Day, TimeRecord } from '@/types/Task'
 import type { Ref } from 'vue'
 import { prepareISODateString } from '@/helpers/DateHelpers'
 import TaskRecord from '@/components/TaskRecord.vue'
+import HoursList from '@/components/HoursList.vue'
 
 import { getCurrentInstance } from 'vue'
 import { useGetDaysOfWeeksDate } from '@/composables/useGetDaysOfWeeksDate'
@@ -26,6 +27,10 @@ const { weekdaysDates } = useGetDaysOfWeeksDate()
 </script>
 <template>
   <div class="days-wrapper">
+    <div class="hours">
+      <div class="title">Time</div>
+      <HoursList />
+    </div>
     <div class="day" v-for="(day, index) in weekdaysDates" :key="index">
       <div class="title" :class="{ 'is-today': getToday(day) }">
         <span>{{ day.weekday }}</span>
@@ -39,32 +44,35 @@ const { weekdaysDates } = useGetDaysOfWeeksDate()
 @import '@/assets/scss/variables';
 .days-wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  & > div {
+    margin: 1px;
+  }
 }
 
 .day {
   width: $width-of-day-row;
   box-sizing: content-box;
-  margin: 1px;
-  .title {
-    border: $border-gray44;
-    text-align: left;
-    padding: 1.5rem;
-    text-align: center;
-    font-weight: bold;
-    &.is-today {
-      border: rgb(184, 78, 78) solid 2px;
-    }
+}
+.title {
+  border: $border-gray44;
+  text-align: left;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  height: 80px;
+  &.is-today {
+    border: rgb(184, 78, 78) solid 2px;
+  }
 
-    :last-child {
-      color: $bg-gray44;
-      font-weight: 100;
-      font-size: 10px;
-    }
-    & > span {
-      display: block;
-    }
+  :last-child {
+    color: $bg-gray44;
+    font-weight: 100;
+    font-size: 10px;
+  }
+  & > span {
+    display: block;
   }
 }
 </style>
