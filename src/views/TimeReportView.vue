@@ -3,9 +3,8 @@ import { ref } from 'vue'
 import type { Day, TimeRecord } from '@/types/Task'
 import type { Ref } from 'vue'
 import { prepareISODateString } from '@/helpers/DateHelpers'
-import TaskRecord from '@/components/TaskRecord.vue'
 import HoursList from '@/components/HoursList.vue'
-
+import ModalBase from '@/components/ui/ModalBase.vue'
 import { getCurrentInstance } from 'vue'
 import { useGetDaysOfWeeksDate } from '@/composables/useGetDaysOfWeeksDate'
 
@@ -29,16 +28,17 @@ const { weekdaysDates } = useGetDaysOfWeeksDate()
   <div class="days-wrapper">
     <div class="hours">
       <div class="title">Time</div>
-      <HoursList />
+      <HoursList :is-hours-column="true" />
     </div>
     <div class="day" v-for="(day, index) in weekdaysDates" :key="index">
       <div class="title" :class="{ 'is-today': getToday(day) }">
         <span>{{ day.weekday }}</span>
         <span>{{ getDisplayDate(day) }}</span>
       </div>
-      <TaskRecord :tasks="tasksPerDay(prepareISODateString(day.year, day.monthNumeric, day.day))" />
+      <HoursList :tasks="tasksPerDay(prepareISODateString(day.year, day.monthNumeric, day.day))" />
     </div>
   </div>
+  <ModalBase :is-visible="visible" />
 </template>
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';

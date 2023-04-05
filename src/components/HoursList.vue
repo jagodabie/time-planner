@@ -1,12 +1,20 @@
 <template>
   <div class="hour-list">
     <div v-for="(hour, index) in hours" :key="index" class="hour">
-      {{ hour }}
+      <span v-if="props.isHoursColumn">{{ hour }}</span>
+      <span v-if="taskPerHour(hour)">{{ taskPerHour(hour) }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { TimeRecord } from '@/types/Task'
+
+const props = defineProps({
+  isHoursColumn: Boolean,
+  tasks: Array<TimeRecord>
+})
+
 const hours: string[] = [
   '6',
   '7',
@@ -26,14 +34,29 @@ const hours: string[] = [
   '21',
   '22'
 ]
+
+const taskPerHour = (hour: string): string => {
+  return props.tasks?.find((el) => el.tasksHour.includes(Number(hour)))?.workDescription ?? ''
+}
 </script>
 <style lang="scss" scoped>
 @import '@/assets/scss/main.scss';
 @import '@/assets/scss/variables';
+
 .hour {
   width: $width-of-day-row;
-  border: $border-gray44;
   margin-top: 1px;
-  padding: 2rem;
+  height: 80px;
+  border: $border-gray44;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: column;
+}
+.hour > span {
+  display: block;
+}
+p {
+  color: red;
 }
 </style>

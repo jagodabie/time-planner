@@ -8,6 +8,7 @@ export interface Task {
 export interface TimeRecord {
   durationInHour: string
   durationInMinutes: string
+  tasksHour: Array<Number>
   workDate: string
   workDescription: string
   title?: string
