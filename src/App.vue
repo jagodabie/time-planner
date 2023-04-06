@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Week</RouterLink>
         <RouterLink to="/tasks">Tasks</RouterLink>
-        <RouterLink to="/basic-tasks">Task's List - Basic</RouterLink>
+        <RouterLink to="/my-tasks">Task's List - Basic</RouterLink>
         <RouterLink to="/time-report">TimeReport</RouterLink>
       </nav>
     </div>

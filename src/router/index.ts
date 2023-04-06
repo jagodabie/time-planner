@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import Playground from '@/views/Playground.vue'
 import TimeReportView from '@/views/TimeReportView.vue'
 import HomeView from '@/views/HomeView.vue'
+import MyTask from '@/views/MyTask.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,11 +23,11 @@ const router = createRouter({
     //   // which is lazy-laded when the route is visited.
     //   component: TasksView
     // },
-    // {
-    //   path: '/basic-tasks',
-    //   name: 'basic-tasks',
-    //   component: BasicTaskView
-    // },
+    {
+      path: '/my-tasks',
+      name: 'my-tasks',
+      component: MyTask
+    },
     // {
     //   path: '/playground',
     //   name: 'playground',

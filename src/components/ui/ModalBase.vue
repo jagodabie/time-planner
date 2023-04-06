@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const props = defineProps({
+  isVisible: Boolean
+})
+const emit = defineEmits(['close', 'confirm'])
+</script>
 <template>
   <transition name="modal">
     <div v-show="isVisible" class="modal">
@@ -17,12 +23,6 @@
     </div>
   </transition>
 </template>
-<script setup lang="ts">
-const props = defineProps({
-  isVisible: Boolean
-})
-const emit = defineEmits(['close', 'confirm'])
-</script>
 <style scoped>
 .modal {
   display: flex;

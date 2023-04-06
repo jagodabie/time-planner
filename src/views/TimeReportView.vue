@@ -13,16 +13,21 @@ const axios = app?.appContext.config.globalProperties.$axios
 const timeRecords: Ref<TimeRecord[]> = ref([])
 const getDisplayDate = (day: Day) => `${day.day} ${day.month} ${day.year}`
 const getToday = (day: Day) => day.day === new Date().getDate()
+const { weekdaysDates } = useGetDaysOfWeeksDate()
+
+const tasksPerDay = (date: string): TimeRecord[] => {
+  return timeRecords.value.filter((task) => task.workDate === date && task.workDescription)
+}
 
 const getTimeRecords = async () => {
   const result = await axios.get('/tasks-time/')
   timeRecords.value = result.data
 }
-getTimeRecords()
-const tasksPerDay = (date: string): TimeRecord[] => {
-  return timeRecords.value.filter((task) => task.workDate === date && task.workDescription)
+try {
+  getTimeRecords()
+} catch (err) {
+  console.log(err)
 }
-const { weekdaysDates } = useGetDaysOfWeeksDate()
 </script>
 <template>
   <div class="days-wrapper">
@@ -38,7 +43,7 @@ const { weekdaysDates } = useGetDaysOfWeeksDate()
       <HoursList :tasks="tasksPerDay(prepareISODateString(day.year, day.monthNumeric, day.day))" />
     </div>
   </div>
-  <ModalBase :is-visible="visible" />
+  <!-- <ModalBase :is-visible="visible" /> -->
 </template>
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';
