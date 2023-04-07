@@ -4,12 +4,13 @@ import type { Ref } from 'vue'
 import type { Task } from '@/types/Task'
 import { ref } from 'vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
-
 const app = getCurrentInstance()
 const axios = app?.appContext.config.globalProperties.$axios
 const myTasks: Ref<Task[]> = ref([])
 const visible: Ref<Boolean> = ref(false)
+const selectedTask: Ref<Task | null> = ref(null)
 
+//TODO composable useCreate promise
 const getTasks = async () => {
   const response = await axios.get('/tasks/')
   myTasks.value = response.data
@@ -19,7 +20,11 @@ const handleModalVisibility = () => {
 }
 
 const handleClick = (task: Task) => {
+  selectedTask.value = task
   handleModalVisibility()
+}
+const submitForm = () => {
+  console.log('submit')
 }
 
 try {
@@ -36,7 +41,14 @@ try {
     </li>
   </ul>
   <ModalBase :is-visible="!!visible" @close="handleModalVisibility">
-    <template v-slot:modal-header> {{}} </template>
+    <template v-slot:modal-header> {{ selectedTask?.title }} </template>
+    <template v-slot:modal-body>
+      <form @submit.prevent="submitForm">
+        <InputBase />
+        <button type="button" @click="visible = false">Cancel</button>
+        <button type="submit">Accept</button>
+      </form>
+    </template>
   </ModalBase>
 </template>
 <style lang="scss" scoped>
@@ -69,5 +81,10 @@ li {
 }
 span {
   margin-right: 20px;
+  background-color: inherit;
+}
+button {
+  padding: 0.3rem 2.2rem;
+  margin: 0.5rem;
 }
 </style>

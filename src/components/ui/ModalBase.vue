@@ -2,7 +2,6 @@
 const props = defineProps({
   isVisible: Boolean
 })
-const emit = defineEmits(['close', 'confirm'])
 </script>
 <template>
   <transition name="modal">
@@ -16,8 +15,6 @@ const emit = defineEmits(['close', 'confirm'])
           <div class="modal-footer">
             <slot name="footer" />
           </div>
-          <button type="button" @click="emit('close')">Cancel</button>
-          <button type="button" @click="emit('confirm')">Accept</button>
         </div>
       </transition>
     </div>
@@ -40,14 +37,10 @@ const emit = defineEmits(['close', 'confirm'])
   width: 500px;
   border: solid 1px;
   padding: 1rem;
+  border-radius: 5px;
 }
 
 .modal-body {
   padding: 0.2rem 1rem;
-}
-
-button {
-  padding: 0.3rem 2.2rem;
-  margin: 0.5rem;
 }
 </style>

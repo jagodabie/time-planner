@@ -4,7 +4,6 @@ import type { Day, TimeRecord } from '@/types/Task'
 import type { Ref } from 'vue'
 import { prepareISODateString } from '@/helpers/DateHelpers'
 import HoursList from '@/components/HoursList.vue'
-import ModalBase from '@/components/ui/ModalBase.vue'
 import { getCurrentInstance } from 'vue'
 import { useGetDaysOfWeeksDate } from '@/composables/useGetDaysOfWeeksDate'
 
@@ -46,7 +45,7 @@ try {
   <!-- <ModalBase :is-visible="visible" /> -->
 </template>
 <style lang="scss" scoped>
-@import '@/assets/scss/variables';
+@import '@/assets/scss/variables/variables';
 .days-wrapper {
   display: flex;
   justify-content: center;

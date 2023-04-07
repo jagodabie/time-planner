@@ -2,12 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
+
+  background-color: rgb(44, 13, 41);
 }
 #app {
   text-align: center;
   box-sizing: border-box;
   height: 100vh;
-  background-color: rgb(41, 12, 41, 0.6);
+  background-color: rgb(44, 13, 41);
+  height: 100%;
 }
 nav {
   padding: 30px;

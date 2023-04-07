@@ -41,7 +41,7 @@ const taskPerHour = (hour: string): string => {
 </script>
 <style lang="scss" scoped>
 @import '@/assets/scss/main.scss';
-@import '@/assets/scss/variables';
+@import '@/assets/scss/variables/variables';
 
 .hour {
   width: $width-of-day-row;
