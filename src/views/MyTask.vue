@@ -4,6 +4,8 @@ import type { Ref } from 'vue'
 import type { Task } from '@/types/Task'
 import { ref } from 'vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
+import InputBase from '@/components/ui/InputBase.vue'
+
 const app = getCurrentInstance()
 const axios = app?.appContext.config.globalProperties.$axios
 const myTasks: Ref<Task[]> = ref([])
@@ -11,6 +13,8 @@ const visible: Ref<Boolean> = ref(false)
 const selectedTask: Ref<Task | null> = ref(null)
 
 //TODO composable useCreate promise
+const time: Ref<string> = ref('')
+
 const getTasks = async () => {
   const response = await axios.get('/tasks/')
   myTasks.value = response.data
@@ -24,7 +28,10 @@ const handleClick = (task: Task) => {
   handleModalVisibility()
 }
 const submitForm = () => {
+  // HTTP request
   console.log('submit')
+
+  visible.value = false
 }
 
 try {
@@ -37,14 +44,14 @@ try {
   <ul>
     <li v-for="(task, index) in myTasks" :key="index" @click="handleClick(task)">
       <span>{{ task.title }}</span>
-      <span><font-awesome-icon icon="fa-solid fa-plus" /></span>
+      <font-awesome-icon icon="fa-solid fa-plus" />
     </li>
   </ul>
   <ModalBase :is-visible="!!visible" @close="handleModalVisibility">
     <template v-slot:modal-header> {{ selectedTask?.title }} </template>
     <template v-slot:modal-body>
       <form @submit.prevent="submitForm">
-        <InputBase />
+        <InputBase label="Time spent" v-model="time" />
         <button type="button" @click="visible = false">Cancel</button>
         <button type="submit">Accept</button>
       </form>
@@ -52,6 +59,7 @@ try {
   </ModalBase>
 </template>
 <style lang="scss" scoped>
+@import '@/assets/scss/variables/variables';
 ul {
   display: flex;
   flex-direction: column;
@@ -61,7 +69,7 @@ ul {
 }
 li {
   font: normal 700 18px/1 sans-serif;
-  background-color: rgb(10, 25, 41);
+  background-color: $button;
   color: rgb(219, 205, 205);
   width: 30%;
   padding: 1.2rem;
@@ -79,12 +87,28 @@ li {
     box-sizing: border-box;
   }
 }
-span {
-  margin-right: 20px;
+
+span + svg,
+li > span {
   background-color: inherit;
 }
-button {
+
+li > span > button {
   padding: 0.3rem 2.2rem;
   margin: 0.5rem;
+}
+button {
+  padding: 0.4rem 1.2rem;
+  border: solid 1px $button;
+  border-radius: 5px;
+  margin: 2px;
+  background-color: $button;
+  &:hover {
+    background-color: $button-hover;
+  }
+  &:focus-visible,
+  &:focus {
+    outline: solid 1px;
+  }
 }
 </style>

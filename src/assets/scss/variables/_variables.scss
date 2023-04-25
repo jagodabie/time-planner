@@ -1,5 +1,6 @@
 $bg-gray: rgb(180, 172, 172);
 $bg-gray44: rgba(51, 49, 49, 0);
+$transparent: rgba(0, 0, 0, 0);
 $border-gray: 0.1px solid $bg-gray;
 $bg-gray44: rgb(46, 44, 44);
 $border-gray44: 0.1px solid $bg-gray44;
@@ -7,3 +8,5 @@ $day-of-width: 15rem;
 $day-of-week-width: 150px;
 $width-of-day-row: 200px;
 $height-of-day-row: 2rem;
+$button: rgb(10, 25, 41);
+$button-hover: rgb(15, 30, 64);
