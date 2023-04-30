@@ -13,7 +13,7 @@ const selectedTask: Ref<Task | null> = ref(null)
 //TODO composable useCreate promise
 const time: Ref<string> = ref('')
 
-const getTasks = async () => {
+const setTasks = async () => {
   myTasks.value = await getMyTasks()
 }
 const handleModalVisibility = () => {
@@ -32,7 +32,7 @@ const submitForm = () => {
 }
 
 try {
-  getTasks()
+  setTasks()
 } catch (err) {
   // sth went wrong
   console.log(err)

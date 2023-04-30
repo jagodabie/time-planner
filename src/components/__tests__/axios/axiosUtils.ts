@@ -70,3 +70,38 @@ export const myTasksMock = [
     category: 'zdrowie',
   },
 ]
+
+export const timeRecordsMock = [
+  {
+    durationInHour: '4',
+    durationInMinutes: '12',
+    tasksHour: [6, 7, 8],
+    workDate: '2023-04-03',
+    workDescription: 'develop my own project',
+    id: 1,
+  },
+  {
+    durationInHour: '2',
+    durationInMinutes: '12',
+    workDate: '2023-04-03',
+    tasksHour: [11, 12, 13],
+    workDescription: 'Cooking lunch',
+    id: 2,
+  },
+  {
+    durationInHour: '1',
+    durationInMinutes: '12',
+    workDate: '2023-04-04',
+    tasksHour: [11, 12, 13],
+    workDescription: 'lunch',
+    id: 3,
+  },
+  {
+    durationInHour: '1',
+    durationInMinutes: '12',
+    workDate: '2023-04-04',
+    tasksHour: [16, 17, 18],
+    workDescription: 'Cooking lunch',
+    id: 4,
+  },
+]

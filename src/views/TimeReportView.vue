@@ -4,11 +4,9 @@ import type { Day, TimeRecord } from '@/types/Task'
 import type { Ref } from 'vue'
 import { prepareISODateString } from '@/helpers/DateHelpers'
 import HoursList from '@/components/HoursList.vue'
-import { getCurrentInstance } from 'vue'
 import { useGetDaysOfWeeksDate } from '@/composables/useGetDaysOfWeeksDate'
+import { getTimeRecords } from '@/services/TasksService'
 
-const app = getCurrentInstance()
-const axios = app?.appContext.config.globalProperties.$axios
 const timeRecords: Ref<TimeRecord[]> = ref([])
 const getDisplayDate = (day: Day) => `${day.day} ${day.month} ${day.year}`
 const getToday = (day: Day) => day.day === new Date().getDate()
@@ -18,13 +16,12 @@ const tasksPerDay = (date: string): TimeRecord[] => {
   return timeRecords.value.filter((task) => task.workDate === date && task.workDescription)
 }
 
-const getTimeRecords = async () => {
-  const result = await axios.get('/tasks-time/')
-  timeRecords.value = result.data
+const setTimeRecord = async () => {
+  timeRecords.value = await getTimeRecords()
 }
 
 try {
-  getTimeRecords()
+  setTimeRecord()
 } catch (err) {
   console.log(err)
 }
