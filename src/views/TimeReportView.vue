@@ -22,6 +22,7 @@ const getTimeRecords = async () => {
   const result = await axios.get('/tasks-time/')
   timeRecords.value = result.data
 }
+
 try {
   getTimeRecords()
 } catch (err) {

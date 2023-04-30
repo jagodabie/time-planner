@@ -4,7 +4,7 @@ import type { Task } from '@/types/Task'
 import { ref } from 'vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
 import InputBase from '@/components/ui/InputBase.vue'
-import { getMyTasks } from '@/services/MyTasks'
+import { getMyTasks } from '@/services/TasksService'
 
 const myTasks: Ref<Task[]> = ref([])
 const visible: Ref<Boolean> = ref(false)
