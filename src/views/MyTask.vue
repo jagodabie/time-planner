@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue'
 import type { Ref } from 'vue'
 import type { Task } from '@/types/Task'
 import { ref } from 'vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
 import InputBase from '@/components/ui/InputBase.vue'
+import { getMyTasks } from '@/services/MyTasks'
 
-const app = getCurrentInstance()
-const axios = app?.appContext.config.globalProperties.$axios
 const myTasks: Ref<Task[]> = ref([])
 const visible: Ref<Boolean> = ref(false)
 const selectedTask: Ref<Task | null> = ref(null)
@@ -16,8 +14,7 @@ const selectedTask: Ref<Task | null> = ref(null)
 const time: Ref<string> = ref('')
 
 const getTasks = async () => {
-  const response = await axios.get('/tasks/')
-  myTasks.value = response.data
+  myTasks.value = await getMyTasks()
 }
 const handleModalVisibility = () => {
   visible.value = !visible.value
@@ -37,6 +34,7 @@ const submitForm = () => {
 try {
   getTasks()
 } catch (err) {
+  // sth went wrong
   console.log(err)
 }
 </script>
