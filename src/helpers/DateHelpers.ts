@@ -5,7 +5,7 @@ type dateElement = string | number
 export function prepareISODateString(
   year: dateElement,
   month: dateElement,
-  day: dateElement
+  day: dateElement,
 ): string {
   return `${String(year)}-${String(month).length === 1 ? `0${String(month)}` : String(month)}-${
     String(day).length === 1 ? `0${String(day)}` : String(day)
@@ -25,7 +25,7 @@ export function getMountNumber(mount: string): string {
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ]
   const mountNumber = allMounts.findIndex((element) => mount === element) + 1
   if (String(allMounts.findIndex((element) => mount === element) + 1).length === 1) {
@@ -39,7 +39,7 @@ export function getDayProperty(dateLocalStringFormat: string): Day {
     month: dateLocalStringFormat.split(',')[1].split(' ')[1],
     monthNumeric: getMountNumber(String(dateLocalStringFormat.split(',')[1].split(' ')[1])),
     year: Number(dateLocalStringFormat.split(',')[2]),
-    day: Number(dateLocalStringFormat.split(',')[1].split(' ')[2])
+    day: Number(dateLocalStringFormat.split(',')[1].split(' ')[2]),
   }
 }
 export function getLocalDateFormat(year: number, month: number, day: number): string {
@@ -47,6 +47,6 @@ export function getLocalDateFormat(year: number, month: number, day: number): st
     weekday: 'long',
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }

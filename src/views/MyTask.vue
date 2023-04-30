@@ -4,18 +4,13 @@ import type { Task } from '@/types/Task'
 import { ref } from 'vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
 import InputBase from '@/components/ui/InputBase.vue'
-import { getMyTasks } from '@/services/TasksService'
+import TasksList from '@/components/TasksList.vue'
 
-const myTasks: Ref<Task[]> = ref([])
 const visible: Ref<Boolean> = ref(false)
 const selectedTask: Ref<Task | null> = ref(null)
-
 //TODO composable useCreate promise
 const time: Ref<string> = ref('')
 
-const setTasks = async () => {
-  myTasks.value = await getMyTasks()
-}
 const handleModalVisibility = () => {
   visible.value = !visible.value
 }
@@ -30,21 +25,15 @@ const submitForm = () => {
 
   visible.value = false
 }
-
-try {
-  setTasks()
-} catch (err) {
-  // sth went wrong
-  console.log(err)
-}
 </script>
 <template>
-  <ul>
-    <li v-for="(task, index) in myTasks" :key="index" @click="handleClick(task)">
-      <span>{{ task.title }}</span>
-      <font-awesome-icon icon="fa-solid fa-plus" />
-    </li>
-  </ul>
+  <Suspense>
+    <TasksList @task-click="handleClick($event)" />
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </Suspense>
+
   <ModalBase :is-visible="!!visible" @close="handleModalVisibility">
     <template v-slot:modal-header> {{ selectedTask?.title }} </template>
     <template v-slot:modal-body>
@@ -58,43 +47,7 @@ try {
 </template>
 <style lang="scss" scoped>
 @import '@/assets/scss/variables/variables';
-ul {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-}
-li {
-  font: normal 700 18px/1 sans-serif;
-  background-color: $button;
-  color: rgb(219, 205, 205);
-  width: 30%;
-  padding: 1.2rem;
-  margin: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  border-radius: 10px;
-  box-sizing: border-box;
-  height: 60px;
-
-  &:hover {
-    background-color: rgb(10, 25, 41, 0.9);
-    border: solid 1px;
-    box-sizing: border-box;
-  }
-}
-
-span + svg,
-li > span {
-  background-color: inherit;
-}
-
-li > span > button {
-  padding: 0.3rem 2.2rem;
-  margin: 0.5rem;
-}
+@import '@/assets/scss/mixin/mixins';
 button {
   padding: 0.4rem 1.2rem;
   border: solid 1px $button;

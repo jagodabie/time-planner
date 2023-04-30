@@ -16,12 +16,8 @@ const tasksPerDay = (date: string): TimeRecord[] => {
   return timeRecords.value.filter((task) => task.workDate === date && task.workDescription)
 }
 
-const setTimeRecord = async () => {
-  timeRecords.value = await getTimeRecords()
-}
-
 try {
-  setTimeRecord()
+  timeRecords.value = await getTimeRecords()
 } catch (err) {
   console.log(err)
 }

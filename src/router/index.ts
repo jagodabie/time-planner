@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
     },
     // {
     //   path: '/tasks',
@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path: '/my-tasks',
       name: 'my-tasks',
-      component: MyTask
+      component: MyTask,
     },
     // {
     //   path: '/playground',
@@ -36,9 +36,9 @@ const router = createRouter({
     {
       path: '/time-report',
       name: 'TimeReport',
-      component: TimeReportView
-    }
-  ]
+      component: TimeReportView,
+    },
+  ],
 })
 
 export default router

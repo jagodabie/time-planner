@@ -9,7 +9,7 @@ test('It given local date formatted string, function getDayProperty return day o
     month: 'April',
     monthNumeric: '04',
     year: 2023,
-    day: 2
+    day: 2,
   })
 
   expect(getDayProperty('Saturday, November 11, 2023')).toEqual({
@@ -17,7 +17,7 @@ test('It given local date formatted string, function getDayProperty return day o
     month: 'November',
     monthNumeric: '11',
     year: 2023,
-    day: 11
+    day: 11,
   })
 
   expect(getDayProperty('Sunday, December 31, 2023')).toEqual({
@@ -25,7 +25,7 @@ test('It given local date formatted string, function getDayProperty return day o
     month: 'December',
     monthNumeric: '12',
     year: 2023,
-    day: 31
+    day: 31,
   })
 })
 

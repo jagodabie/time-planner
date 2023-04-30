@@ -9,49 +9,49 @@ test('It given iso date string or not, function useGetDaysOfWeeksDate return Ret
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 2
+      day: 2,
     },
     {
       weekday: 'Monday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 3
+      day: 3,
     },
     {
       weekday: 'Tuesday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 4
+      day: 4,
     },
     {
       weekday: 'Wednesday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 5
+      day: 5,
     },
     {
       weekday: 'Thursday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 6
+      day: 6,
     },
     {
       weekday: 'Friday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 7
+      day: 7,
     },
     {
       weekday: 'Saturday',
       month: 'April',
       monthNumeric: '04',
       year: 2023,
-      day: 8
-    }
+      day: 8,
+    },
   ])
 })

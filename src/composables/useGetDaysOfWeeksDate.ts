@@ -11,11 +11,11 @@ export function useGetDaysOfWeeksDate(date?: string): { weekdaysDates: Day[] } {
 
   const daysBeforeToday = weekdays.slice(
     0,
-    weekdays.indexOf(getLocalDateFormat(year, month, day).split(',')[0])
+    weekdays.indexOf(getLocalDateFormat(year, month, day).split(',')[0]),
   )
   const dayAfterToday = weekdays.slice(
     weekdays.indexOf(getLocalDateFormat(year, month, day).split(',')[0]),
-    7
+    7,
   )
 
   for (let i = daysBeforeToday.length; i > 0; i--) {

@@ -10,15 +10,18 @@ const props = withDefaults(defineProps<Props>(), {
   label: '',
   modelValue: '',
 })
+
 const floatlabel: Ref<Boolean> = ref(false)
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void
 }>()
+
 const onBlur = () => {
   if (props.modelValue) return
   floatlabel.value = false
 }
+
 const handleInput = (event: Event) => {
   const eventTarget = event.target as HTMLInputElement
   emit('update:modelValue', eventTarget.value)

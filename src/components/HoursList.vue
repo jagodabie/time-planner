@@ -12,7 +12,7 @@ import type { TimeRecord } from '@/types/Task'
 
 const props = defineProps({
   isHoursColumn: Boolean,
-  tasks: Array<TimeRecord>
+  tasks: Array<TimeRecord>,
 })
 
 const hours: string[] = [
@@ -32,7 +32,7 @@ const hours: string[] = [
   '19',
   '20',
   '21',
-  '22'
+  '22',
 ]
 
 const taskPerHour = (hour: string): string => {
